@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+														<!-- polymorphism -->
+	<!-- <bean id="tv" class="polymophism.SamsungTV" p:speaker-ref="sony" p:price="2700000"/>
+	
+	
+	<bean id="sony" class="polymophism.SonySpeaker"></bean>
+	
+	<bean id="apple" class="polymophism.AppleSpeaker"></bean> -->
+	
+	<!-- <bean id="tv" class="polymophism.SamsungTV" init-method="initMethod" destroy-method="destroyMethod" /> -->
+	<!-- <bean id="tv" class="polymophism.SamsungTV" lazy-init="true" /> getBean() 호출할때만 실행 -->
+	<!-- <bean id="tv" class="polymophism.SamsungTV" scope="singleton" /> 해당 bean 이 스프링 컨테이너에 의해 단 하나만 생성되어 운용되도록 한다. -->
+	 														<!-- end -->
+	 													
+	 													<!-- Collection -->						
+	<!-- <bean id="collectionBean" class="Collection.CollectionBean">
+		<property name="addressList">
+			<list>
+				<value>서울시 강남구 역삼동</value>
+				<value>서울시 성동구 행당동</value>
+				<value>서울시 성동구 행당동</value>
+			</list>
+			<map>
+				<entry>
+					<key><value>고길동</value></key>
+					<value>서울시 강남구 역삼동</value>
+				</entry>
+				<entry>
+					<key><value>마이콜</value></key>
+					<value>서울시 강서구 화곡동</value>
+				</entry>
+			</map>
+		</property>
+	</bean> -->
+															<!-- end -->
+															
+															<!-- annotation -->
+<!-- <context:component-scan base-package="polymorphim"></context:component-scan>	
+<bean id="tv" class="polymorphism.LGTV">
+	<property name="speaker" ref="apple"></property>
+	<property name="price" value="27000000"></property>
+</bean>
+
+									
+	<bean id="sony" class="polymorphism.SonySpeaker"></bean>
+	<bean id="apple" class="polymorphism.AppleSpeaker"></bean>
+	<bean class="polymorphism.SonySpeaker"></bean> -->
+															<!-- end -->
+															
+															<!-- Board -->
+	<!-- <context:component-scan base-package="Board">
+	</context:component-scan> -->
+															<!-- end -->
+															
+															<!-- UserService -->
+	<context:component-scan base-package="com.springbook.biz"/>
+	
+	<bean id="userService" class="UserService.UserServiceImpl">
+		<property name="userDAO" ref="userDAO"/>
+	</bean>
+	
+	<bean id="userDAO" class="UserService.UserDAO"/>															
+</beans>
