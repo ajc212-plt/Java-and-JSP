@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 
 import Board.JDBCUtil;
 
+import org.springframework.stereotype.Repository;
+
+@Repository("userDAO")
 public class UserDAO {
 	//JDBC 관련 변수
 	private Connection conn = null;

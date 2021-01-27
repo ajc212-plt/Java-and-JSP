@@ -9,7 +9,8 @@ public class JDBCUtil {
 	public static Connection getConnection() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			return DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:big5","big5","admin1234");
+			return DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","SYSTEM","admin1234"); 
+			//뒤에서비스명칭이 tnsnames 에 xe = 얘를 따라가요 
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

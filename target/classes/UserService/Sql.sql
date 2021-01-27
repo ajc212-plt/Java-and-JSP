@@ -5,3 +5,15 @@ CREATE TABLE USERS(
 	ROLE VARCHAR2(5)
 );
 
+insert into users values('ajc212','198219','¾ÈÁ¾Âù','1');
+
+create table board(
+	SEQ NUMBER(5) PRIMARY KEY,
+	TITLE VARCHAR2(200),
+	WRITER VARCHAR2(20),
+	CONTENT VARCHAR2(2000),
+	REGDATE DATE DEFAULT SYSDATE,
+	CNT NUMBER(5) DEFAULT 0
+);
+
+select * from BOARD;

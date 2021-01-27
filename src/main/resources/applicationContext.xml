@@ -3,8 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 
 														<!-- polymorphism -->
 	<!-- <bean id="tv" class="polymophism.SamsungTV" p:speaker-ref="sony" p:price="2700000"/>
@@ -60,11 +62,29 @@
 															<!-- end -->
 															
 															<!-- UserService -->
-	<context:component-scan base-package="com.springbook.biz"/>
+	<!-- <context:component-scan base-package="UserService"/> -->
+	<!-- <context:component-scan base-package="Board"/> -->
 	
-	<bean id="userService" class="UserService.UserServiceImpl">
+	<!-- <bean id="userService" class="UserService.UserServiceImpl">
 		<property name="userDAO" ref="userDAO"/>
 	</bean>
 	
-	<bean id="userDAO" class="UserService.UserDAO"/>															
+	<bean id="userDAO" class="UserService.UserDAO"/> -->			
+	
+	
+															<!-- AOP -->
+	<context:component-scan base-package="Board"/>
+	
+	<bean id="log" class="common.Log4jAdvice"></bean>
+	<aop:config>
+		<aop:pointcut id="allPointcut" expression="execution(* Board..*Impl.*(..))"/> 
+		<!-- allPointcut은 리턴타입과 매개변수를 무시하고 Board패키지로 시작하는 클래스 중에서 이름이 Impl로 끝나는 클래스의 모든 메소드를 포인트컷으로 설정 -->
+		<aop:pointcut id="getPointcut" expression="execution(* Board..*Impl.get*(..))"/>
+		<!-- getPointcut은 allPointcut과 같지만 get으로 시작하는 메소드만 포인트컷으로 설정 -->
+		
+		<aop:aspect ref="log">
+			<aop:before pointcut-ref="getPointcut" method="printLogging"/>
+		</aop:aspect>
+	</aop:config>
+													
 </beans>
