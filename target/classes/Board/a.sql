@@ -5,3 +5,5 @@ create table AhnJongCan(
 insert into AhnJongCan values('╬ха╬бЫ');
 
 select * from AHNJONGCAN
+
+select * from board
